@@ -1,0 +1,50 @@
+SHINING PINK PORTFOLIO — ONE-TIME SETUP
+========================================
+
+You do not need to edit the HTML, CSS or JavaScript.
+
+PART 1 — CREATE THE FREE DATABASE
+1. Open https://supabase.com and create a free project.
+2. Open SQL Editor, then open the supplied file "supabase-setup.sql".
+3. Replace YOUR_ADMIN_EMAIL with the email you will use for portfolio login.
+4. Copy the complete SQL and press Run.
+5. Open Project Settings > API.
+6. Copy the Project URL and the anon/public key (or publishable key).
+7. Open "config.js" and replace:
+   YOUR_SUPABASE_URL
+   YOUR_SUPABASE_ANON_KEY
+8. Save config.js. Never use the service_role/secret key here.
+
+PART 2 — TEST ADMIN LOGIN
+1. Open index.html with VS Code Live Server.
+2. Click "Edit Portfolio ♡".
+3. Enter the same admin email used in the SQL file.
+4. Choose "Create account" and create your own password.
+5. If Supabase sends a confirmation email, confirm it and then log in.
+6. Add your name, information and images, then click "Save Changes".
+
+PART 3 — DEPLOY ON VERCEL
+Option A (easy with GitHub):
+1. Upload this folder to a new GitHub repository.
+2. In Vercel choose Add New > Project and import that repository.
+3. Framework Preset: Other
+4. Build Command: leave empty
+5. Output Directory: leave empty
+6. Press Deploy.
+
+Option B (Vercel command line):
+1. Open this folder in VS Code.
+2. Open Terminal and run: npx vercel
+3. Log in and accept the default options.
+4. For the final public deployment run: npx vercel --prod
+
+AFTER VERCEL DEPLOYMENT
+In Supabase open Authentication > URL Configuration.
+Set Site URL to your final https://your-site.vercel.app address.
+Add the same address to Redirect URLs.
+
+HOW SAVING WORKS
+- Text and project data are saved in the Supabase database.
+- Profile and project images are saved in Supabase Storage.
+- The public portfolio loads the same information on every device.
+- Only the email listed in the admins table can edit it.

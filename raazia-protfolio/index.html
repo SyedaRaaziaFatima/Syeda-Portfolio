@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
   <div class="stars" id="stars" aria-hidden="true"></div>
 
   <header class="navbar">
@@ -15,6 +16,7 @@
     <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
     <nav id="navMenu">
       <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      <button class="theme-btn" id="themeToggle" aria-label="Switch dark mode">☾</button>
       <button class="edit-btn" id="openEditor">Edit Portfolio ♡</button>
     </nav>
   </header>
@@ -69,17 +71,42 @@
         <a id="linkedinLink" target="_blank"><span>in</span><div><small>LinkedIn</small><strong id="displayLinkedin"></strong></div></a>
         <a id="githubLink" target="_blank"><span>⌘</span><div><small>GitHub</small><strong id="displayGithub"></strong></div></a>
         <div><span>☎</span><div><small>Phone</small><strong id="displayPhone"></strong></div></div>
+        <a id="whatsappLink" target="_blank" rel="noreferrer"><span class="whatsapp-icon">◉</span><div><small>WhatsApp</small><strong id="displayWhatsapp">Chat with me</strong></div></a>
       </div>
+    </section>
+
+    <section class="cv-section">
+      <div class="cv-sparkles" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i></div>
+      <p class="eyebrow">MY PROFESSIONAL PROFILE</p>
+      <h2>Want the complete story?</h2>
+      <p>Download a beautiful PDF CV created automatically from my latest portfolio information.</p>
+      <button type="button" id="downloadCv">Download My CV · PDF ↓</button>
+      <a id="cvWhatsappLink" target="_blank" rel="noreferrer">Message me on WhatsApp ↗</a>
     </section>
   </main>
 
   <footer><a class="brand" href="#home"><span>✦</span> My Portfolio</a><p>Made with code, courage & a little sparkle ♡</p><a href="#home">Back to top ↑</a></footer>
+  <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
 
   <div class="editor-backdrop" id="editorBackdrop">
     <aside class="editor" role="dialog" aria-modal="true" aria-label="Portfolio editor">
       <header><div><p>PERSONAL PORTFOLIO</p><h2>Edit everything</h2></div><button id="closeEditor" aria-label="Close editor">×</button></header>
+
+      <section class="auth-gate" id="authGate">
+        <div class="auth-icon">♡</div>
+        <h3>Admin Login</h3>
+        <p>Only the portfolio owner can change this website.</p>
+        <div class="setup-warning" id="setupWarning">Supabase is not connected yet. Complete the included setup guide first.</div>
+        <label>Email<input id="loginEmail" type="email" autocomplete="email" placeholder="your@email.com"></label>
+        <label>Password<input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••"></label>
+        <div class="auth-actions"><button type="button" class="save-btn" id="loginButton">Login</button><button type="button" id="signupButton">Create account</button></div>
+        <span class="auth-message" id="authMessage"></span>
+      </section>
+
+      <div class="editor-content" id="editorContent" hidden>
+      <div class="admin-strip"><span id="adminIdentity"></span><button type="button" id="logoutButton">Log out</button></div>
       <div class="editor-tabs" id="editorTabs">
-        <button class="active" data-tab="profile">Profile</button><button data-tab="aboutEdit">About</button><button data-tab="skillsEdit">Skills</button><button data-tab="projectsEdit">Projects</button><button data-tab="contactEdit">Contact</button>
+        <button class="active" data-tab="profile">Profile</button><button data-tab="aboutEdit">About</button><button data-tab="skillsEdit">Skills</button><button data-tab="projectsEdit">Projects</button><button data-tab="contactEdit">Contact</button><button data-tab="backupEdit">Backup</button>
       </div>
       <form id="portfolioForm">
         <section class="tab-panel active" id="profile">
@@ -96,13 +123,21 @@
         <section class="tab-panel" id="projectsEdit"><div class="panel-title"><h3>Projects</h3><button type="button" id="addProject">+ Add project</button></div><div id="projectEditor"></div></section>
         <section class="tab-panel" id="contactEdit">
           <h3>Contact details</h3><div class="two-cols"><label>Email<input id="emailInput" type="email"></label><label>Phone<input id="phoneInput"></label><label>LinkedIn<input id="linkedinInput"></label><label>GitHub<input id="githubInput"></label></div>
-          <div class="save-info">Your changes and uploaded images are saved in this browser on this computer.</div>
+          <div class="save-info">Your changes and uploaded images are saved permanently in your online database.</div>
+        </section>
+        <section class="tab-panel" id="backupEdit">
+          <h3>Backup & restore</h3><p class="backup-copy">Export your complete portfolio data to a JSON file. Import it later on another browser or computer.</p>
+          <div class="backup-actions"><button type="button" id="exportData">Download Backup</button><label>Import Backup<input type="file" id="importData" accept="application/json,.json"></label></div>
         </section>
       </form>
       <div class="editor-footer"><button class="reset-btn" type="button" id="resetData">Reset demo data</button><span id="saveMessage"></span><button class="save-btn" type="submit" form="portfolioForm">Save Changes ✦</button></div>
+      </div>
     </aside>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
